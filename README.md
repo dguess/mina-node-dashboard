@@ -41,7 +41,7 @@ If everything worked correctly you should now be able to see Prometheus running 
 
 (replace [IP Address] with the public IP address of your prometheus server)
 
-[Prometheus Running Example](./screenshot-prometheus-example.png "Prometheus Running Example")
+[Prometheus Running Example](https://raw.githubusercontent.com/dguess/mina-node-dashboard/main/screenshot-prometheus-example.png "Prometheus Running Example")
 
 ## Configure Prometheus to get Mina metrics
 
@@ -139,7 +139,7 @@ Enter a valid mina metrics such as `Coda_Transition_frontier_max_blocklength_obs
 
 If it's working as expected you should see the data for the metric selected similar to below:
 
-[Prometheus Running Example](./screenshot-prometheus-example2.png "Prometheus Running Example")
+[Prometheus Running Example](https://raw.githubusercontent.com/dguess/mina-node-dashboard/main/screenshot-prometheus-example2.png "Prometheus Running Example")
 
 
 ## Step 4: Installing Grafana
