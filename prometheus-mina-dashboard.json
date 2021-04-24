@@ -1,4 +1,43 @@
 {
+    "__inputs": [],
+    "__requires": [
+      {
+        "type": "panel",
+        "id": "bargauge",
+        "name": "Bar gauge",
+        "version": ""
+      },
+      {
+        "type": "grafana",
+        "id": "grafana",
+        "name": "Grafana",
+        "version": "7.5.4"
+      },
+      {
+        "type": "panel",
+        "id": "graph",
+        "name": "Graph",
+        "version": ""
+      },
+      {
+        "type": "datasource",
+        "id": "prometheus",
+        "name": "Prometheus",
+        "version": "1.0.0"
+      },
+      {
+        "type": "panel",
+        "id": "singlestat",
+        "name": "Singlestat",
+        "version": ""
+      },
+      {
+        "type": "panel",
+        "id": "stat",
+        "name": "Stat",
+        "version": ""
+      }
+    ],
     "annotations": {
       "list": [
         {
@@ -16,8 +55,8 @@
     "editable": true,
     "gnetId": 13978,
     "graphTooltip": 0,
-    "id": 2,
-    "iteration": 1619255475702,
+    "id": null,
+    "iteration": 1619255658292,
     "links": [],
     "panels": [
       {
@@ -1785,11 +1824,7 @@
         },
         {
           "allValue": null,
-          "current": {
-            "selected": false,
-            "text": "34.67.102.114:9100",
-            "value": "34.67.102.114:9100"
-          },
+          "current": {},
           "datasource": "$datasource",
           "definition": "",
           "description": null,
