@@ -17,7 +17,7 @@
     "gnetId": 13978,
     "graphTooltip": 0,
     "id": 2,
-    "iteration": 1619161294443,
+    "iteration": 1619226587282,
     "links": [],
     "panels": [
       {
@@ -58,7 +58,7 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
+          "h": 6,
           "w": 6,
           "x": 0,
           "y": 1
@@ -118,7 +118,7 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
+          "h": 6,
           "w": 6,
           "x": 6,
           "y": 1
@@ -175,7 +175,7 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 4,
+          "h": 3,
           "w": 4,
           "x": 12,
           "y": 1
@@ -231,7 +231,7 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
+          "h": 6,
           "w": 4,
           "x": 16,
           "y": 1
@@ -295,7 +295,7 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
+          "h": 6,
           "w": 4,
           "x": 20,
           "y": 1
@@ -366,10 +366,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 4,
+          "h": 3,
           "w": 4,
           "x": 12,
-          "y": 5
+          "y": 4
         },
         "id": 20,
         "options": {
@@ -416,7 +416,7 @@
           "h": 8,
           "w": 8,
           "x": 0,
-          "y": 9
+          "y": 7
         },
         "hiddenSeries": false,
         "id": 22,
@@ -513,7 +513,7 @@
           "h": 8,
           "w": 8,
           "x": 8,
-          "y": 9
+          "y": 7
         },
         "hiddenSeries": false,
         "id": 23,
@@ -610,7 +610,7 @@
           "h": 8,
           "w": 8,
           "x": 16,
-          "y": 9
+          "y": 7
         },
         "hiddenSeries": false,
         "id": 24,
@@ -692,13 +692,182 @@
         }
       },
       {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-purple",
+                  "value": null
+                },
+                {
+                  "color": "light-red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 16,
+          "x": 0,
+          "y": 15
+        },
+        "id": 29,
+        "options": {
+          "displayMode": "gradient",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true,
+          "text": {}
+        },
+        "pluginVersion": "7.5.4",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "Coda_Snark_work_snark_fee_bucket",
+            "format": "heatmap",
+            "interval": "",
+            "legendFormat": "{{le}}",
+            "refId": "A"
+          }
+        ],
+        "title": "Snark Work Fees",
+        "type": "bargauge"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "purple",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 4,
+          "x": 16,
+          "y": 15
+        },
+        "id": 31,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.4",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "Coda_Scan_state_snark_fees_per_block",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Snark Fees per Block",
+        "type": "stat"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "super-light-purple",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 4,
+          "x": 20,
+          "y": 15
+        },
+        "id": 33,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.4",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "Coda_Scan_state_transaction_fees_per_block / 1000000000",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "Mina",
+            "refId": "A"
+          }
+        ],
+        "title": "Transaction Fees Per Block (Mina)",
+        "type": "stat"
+      },
+      {
         "collapsed": false,
         "datasource": null,
         "gridPos": {
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 17
+          "y": 23
         },
         "id": 11,
         "panels": [],
@@ -721,7 +890,7 @@
           "h": 7,
           "w": 12,
           "x": 0,
-          "y": 18
+          "y": 24
         },
         "hiddenSeries": false,
         "id": 2,
@@ -824,7 +993,7 @@
           "h": 7,
           "w": 12,
           "x": 12,
-          "y": 18
+          "y": 24
         },
         "hiddenSeries": false,
         "id": 3,
@@ -948,7 +1117,7 @@
           "h": 7,
           "w": 18,
           "x": 0,
-          "y": 25
+          "y": 31
         },
         "hiddenSeries": false,
         "id": 4,
@@ -1080,7 +1249,7 @@
           "h": 7,
           "w": 6,
           "x": 18,
-          "y": 25
+          "y": 31
         },
         "id": 5,
         "interval": null,
@@ -1157,7 +1326,7 @@
           "h": 7,
           "w": 12,
           "x": 0,
-          "y": 32
+          "y": 38
         },
         "hiddenSeries": false,
         "id": 6,
@@ -1285,7 +1454,7 @@
           "h": 7,
           "w": 12,
           "x": 12,
-          "y": 32
+          "y": 38
         },
         "hiddenSeries": false,
         "id": 7,
@@ -1400,7 +1569,7 @@
           "h": 7,
           "w": 12,
           "x": 0,
-          "y": 39
+          "y": 45
         },
         "hiddenSeries": false,
         "id": 8,
@@ -1500,7 +1669,7 @@
           "h": 7,
           "w": 12,
           "x": 12,
-          "y": 39
+          "y": 45
         },
         "hiddenSeries": false,
         "id": 9,
@@ -1679,5 +1848,5 @@
     "timezone": "browser",
     "title": "Mina Node Dashboard",
     "uid": "mina_node_dashboard",
-    "version": 26
+    "version": 29
   }

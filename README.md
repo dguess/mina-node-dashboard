@@ -2,6 +2,10 @@
 
 This is a guide on how to set up a Mina Node Dashboard using Prometheus and Grafana. It uses Ubuntu 18.04 running on a t3.micro AWS EC2 instance.
 
+![Mina Node Dashboard Example](./screenshot-dashboard1.png)
+
+![Mina Node Dashboard Example2](./screenshot-dashboard2.png)
+
 ## Step 1: Set up the new server
 
 First up you need to set up a new server to run your Mina node dashboard. You can set this up to run on your Mina Block Producer server but it is **NOT** recommended.
@@ -252,8 +256,16 @@ In the configuration settings for the data source set the following and then cli
 
 ## Step 8: Importing the Mina Node Dashboard
 
+To import the Mina Node Dashboard click on the 'Create' menu on the left and select 'Import'.
 
+![Grafana Import Example](./screenshot-grafana-import.png)
 
+In the 'Import via panel json' section paste the following JSON:
 
+[Mina Node Dashboard JSON](./prometheus-mina-dashboard.json)
 
+You should now see your new Mina Node Dashboard!
 
+![Mina Node Dashboard Example](./screenshot-dashboard1.png)
+
+There's also an excellent community-built 'Mina Performance Dashboard' available to import here - https://grafana.com/grafana/dashboards/12840
