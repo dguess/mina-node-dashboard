@@ -1,4 +1,4 @@
-# Mina Node Dashboard (Prometheus & Grafana)
+# Mina Node Dashboard (Using Prometheus & Grafana)
 
 This is a guide on how to set up a Mina Node Dashboard using Prometheus and Grafana. It uses Ubuntu 18.04 running on a t3.micro AWS EC2 instance.
 
@@ -29,7 +29,7 @@ Add the following Custom TCP rules to allow inbound traffic to Grafana and Prome
     - Description: Prometheus
 
 
-## Step 2: Installing Prometheus
+## Step 2: Installing Prometheus on the new server
 
 Next up you need to install Prometheus on your new server. Prometheus will collect all the real time metrics from our Mina node and store them in a time series database.
 
@@ -43,11 +43,11 @@ If everything worked correctly you should now be able to see Prometheus running 
 
 ![Prometheus Running Example](./screenshot-prometheus-example.png)
 
-## Configure Prometheus to get Mina metrics
+## Step 3: Enabling metrics on the Mina server
 
-Ok now you have Prometheus installed we need to set it up to get the metrics from the Mina node.
+Now we need to set up the Mina server so that Prometheus can access the metrics.
 
-### Allow Prometheus access to Mina metrics
+### Enable Mina metrics port
 
 The Mina daemon needs some extra flags to allow the metrics to be accessed. If you're using the '~/.mina-env' file for this you can do the following.
 
@@ -76,6 +76,86 @@ Create the follwoing firewall rule on your Mina server and allow the inbound tra
     - Description: Prometheus
 
 (replace [IP Address] with the public IP address of your prometheus server)
+
+## Step 4: Install node_exporter on the Mina node
+
+As well as the Mina specific metrics we also want to capture the server metrics so we can see how the server is performing (eg. RAM usage, CPU, etc.). To enable this we need to install the node_exporter.
+
+### Create Prometheus system user / group
+We’ll create a dedicated Prometheus system user and group. The  -r or –system option is used for this purpose.
+
+```shell
+sudo groupadd --system prometheus
+sudo useradd -s /sbin/nologin --system -g prometheus prometheus
+```
+### Install node_exporter
+
+Download node_exporter archive.
+
+```shell
+curl -s https://api.github.com/repos/prometheus/node_exporter/releases/latest \
+| grep browser_download_url \
+| grep linux-amd64 \
+| cut -d '"' -f 4 \
+| wget -qi -
+```
+
+Extract downloaded file and move the binary file to /usr/local/bin.
+
+```
+tar -xvf node_exporter*.tar.gz
+cd  node_exporter*/
+sudo cp node_exporter /usr/local/bin
+```
+
+Confirm installation.
+
+```
+$ node_exporter --version
+node_exporter, version 0.18.1 (branch: HEAD, revision: 3db77732e925c08f675d7404a8c46466b2ece83e)
+  build user:       root@b50852a1acba
+  build date:       20190604-16:41:18
+  go version:       go1.12.5
+```
+
+Create node_exporter service.
+
+```
+sudo tee /etc/systemd/system/node_exporter.service <<EOF
+[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=default.target
+EOF
+Reload systemd and start the service.
+
+sudo systemctl daemon-reload
+sudo systemctl start node_exporter
+sudo systemctl enable node_exporter
+Confirm status:
+
+$  systemctl status node_exporter.service 
+● node_exporter.service - Node Exporter
+   Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
+   Active: active (running) since Wed 2019-08-21 23:41:11 CEST; 8s ago
+ Main PID: 22879 (node_exporter)
+    Tasks: 6 (limit: 4585)
+   Memory: 6.6M
+   CGroup: /system.slice/node_exporter.service
+           └─22879 /usr/local/bin/node_exporter
+.................................................
+```
+
+## Step 5: Configure Prometheus to get Mina metrics
+
+Ok now you have Prometheus and the node exporter installed we need to set it up to get the metrics from the Mina node.
 
 ### Configure Prometheus to retrieve metrics from the Mina server
 
@@ -142,6 +222,38 @@ If it's working as expected you should see the data for the metric selected simi
 ![Prometheus Running Example](./screenshot-prometheus-example2.png)
 
 
-## Step 4: Installing Grafana
+## Step 6: Installing Grafana
+
+Ok now we have all the metrics we want to visualise all them on a fancy dashboard! Grafana is just what we need for this.
+
+Use the following guide to install Grafana on the same server as Prometheus:
+
+https://computingforgeeks.com/how-to-install-grafana-on-ubuntu-debian/
+
+If everything worked correctly you should now be able to see Grafana running by going to http://[IP Address]:3000
+
+(replace [IP Address] with the public IP address of your prometheus server)
+
+![Grafana Running Example](./screenshot-grafana-example1.png)
+
+## Step 7: Connect Grafana to Prometheus Data Source
+
+Now to connect Grafana to our data.
+
+Click on the 'Configuration' menu option on the left hand side and then 'Data Sources' and 'Add Data Source'.
+
+![Grafana Config Example](./screenshot-grafana-example2.png)
+
+In the configuration settings for the data source set the following and then click the 'Save and Test' button.
+ - Name: Prometheus Mina
+ - URL: http://localhost:9090
+
+![Grafana Config Example 2](./screenshot-grafana-example3.png)
+
+## Step 8: Importing the Mina Node Dashboard
+
+
+
+
 
 
