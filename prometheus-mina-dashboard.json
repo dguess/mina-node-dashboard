@@ -56,7 +56,7 @@
     "gnetId": 13978,
     "graphTooltip": 0,
     "id": null,
-    "iteration": 1619255658292,
+    "iteration": 1619259679346,
     "links": [],
     "panels": [
       {
@@ -183,9 +183,9 @@
           {
             "exemplar": true,
             "expr": "Coda_Network_peers",
-            "instant": true,
+            "instant": false,
             "interval": "",
-            "intervalFactor": 2,
+            "intervalFactor": 5,
             "legendFormat": "",
             "refId": "A"
           }
@@ -488,7 +488,7 @@
             "exemplar": true,
             "expr": "Coda_Block_latency_inclusion_time",
             "interval": "",
-            "intervalFactor": 2,
+            "intervalFactor": 3,
             "legendFormat": "Seconds",
             "refId": "A"
           }
@@ -585,7 +585,7 @@
             "exemplar": true,
             "expr": "Coda_Block_latency_gossip_time",
             "interval": "",
-            "intervalFactor": 2,
+            "intervalFactor": 3,
             "legendFormat": "Seconds",
             "refId": "A"
           }
@@ -1852,7 +1852,7 @@
       ]
     },
     "time": {
-      "from": "now-1h",
+      "from": "now-24h",
       "to": "now"
     },
     "timepicker": {
