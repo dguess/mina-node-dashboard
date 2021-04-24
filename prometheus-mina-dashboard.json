@@ -12,12 +12,12 @@
         }
       ]
     },
-    "description": "A quickstart to setup Prometheus Node Exporter with preconfigured dashboards, alerting rules, and recording rules.",
+    "description": "A quickstart to set up a Mina Node Dashboard",
     "editable": true,
     "gnetId": 13978,
     "graphTooltip": 0,
     "id": 2,
-    "iteration": 1619226587282,
+    "iteration": 1619255475702,
     "links": [],
     "panels": [
       {
@@ -1848,5 +1848,5 @@
     "timezone": "browser",
     "title": "Mina Node Dashboard",
     "uid": "mina_node_dashboard",
-    "version": 29
+    "version": 34
   }

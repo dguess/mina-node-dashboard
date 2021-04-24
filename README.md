@@ -1,6 +1,6 @@
 # Mina Node Dashboard (Using Prometheus & Grafana)
 
-This is a guide on how to set up a Mina Node Dashboard using Prometheus and Grafana. It uses Ubuntu 18.04 running on a t3.micro AWS EC2 instance.
+This is a guide on how to set up a Mina Node Dashboard using Prometheus and Grafana using Ubuntu 18.04 running on a t3.micro AWS EC2 instance.
 
 ![Mina Node Dashboard Example](./screenshot-dashboard1.png)
 
@@ -12,7 +12,7 @@ First up you need to set up a new server to run your Mina node dashboard. You ca
 
 ### Create new AWS EC2 instance 
 
-Start by createing a new AWS EC2 instance (https://aws.amazon.com/ec2/):
+Start by creating a new AWS EC2 instance (https://aws.amazon.com/ec2/):
 
  - **Amazon Machine Image (AMI):** Ubuntu Server 18.04 LTS (HVM), SSD Volume Type
  - **Instance Type:** t3.micro
@@ -35,7 +35,7 @@ Add the following Custom TCP rules to allow inbound traffic to Grafana and Prome
 
 ## Step 2: Installing Prometheus on the new server
 
-Next up you need to install Prometheus on your new server. Prometheus will collect all the real time metrics from our Mina node and store them in a time series database.
+Next up you need to install Prometheus on your new server. Prometheus will collect all the real time metrics from your Mina node and store them in a time series database.
 
 Connect to your new AWS instance and follow the following guide to install Prometheus:
 
@@ -49,7 +49,7 @@ If everything worked correctly you should now be able to see Prometheus running 
 
 ## Step 3: Enabling metrics on the Mina server
 
-Now we need to set up the Mina server so that Prometheus can access the metrics.
+Now you need to set up the Mina server so that Prometheus can access the metrics.
 
 ### Enable Mina metrics port
 
@@ -71,7 +71,7 @@ Add the metric-ports flag to the 'EXTRA_FLAGS`
 
 Next you need to open some ports on your Mina node to allow Prometheus to communicate.
 
-Create the follwoing firewall rule on your Mina server and allow the inbound traffic from Prometheus:
+Create the following firewall rule on your Mina server and allow the inbound traffic from Prometheus:
 
  - **Prometheus**
     - Type: Custom TCP Rule
@@ -79,11 +79,11 @@ Create the follwoing firewall rule on your Mina server and allow the inbound tra
     - Source: [IP Address]
     - Description: Prometheus
 
-(replace [IP Address] with the public IP address of your prometheus server)
+*replace [IP Address] with the public IP address of your prometheus server*
 
 ## Step 4: Install node_exporter on the Mina node
 
-As well as the Mina specific metrics we also want to capture the server metrics so we can see how the server is performing (eg. RAM usage, CPU, etc.). To enable this we need to install the node_exporter.
+As well as the Mina specific metrics we also want to capture the server metrics so we can see how the server is performing (eg. RAM usage, CPU, etc.). To enable this you need to install the node_exporter.
 
 ### Create Prometheus system user / group
 We’ll create a dedicated Prometheus system user and group. The  -r or –system option is used for this purpose.
@@ -159,11 +159,11 @@ $  systemctl status node_exporter.service
 
 ## Step 5: Configure Prometheus to get Mina metrics
 
-Ok now you have Prometheus and the node exporter installed we need to set it up to get the metrics from the Mina node.
+Ok now you have Prometheus and the node exporter installed you need to set it up to get the metrics from the Mina node.
 
 ### Configure Prometheus to retrieve metrics from the Mina server
 
-Now we need to configure Prometheus to retrieve our Mina metrics.
+Now you need to configure Prometheus to retrieve outher Mina metrics.
 
 On the prometheus server open the config file:
 
@@ -205,7 +205,7 @@ scrape_configs:
     - targets: ['[IP_ADDRESS]:6060','[IP_ADDRESS]:9100']
 ```
 
-(replace [IP Address] with the public IP address of your Mina server)
+*replace [IP Address] with the public IP address of your Mina server*
 
 Now restart Prometheus:
 ```shell
@@ -217,7 +217,7 @@ If Prometheus is now working as expected we should be able to view the metrics c
 Open the Prometheus web client again:
 http://[IP_ADDRESS]:9090/
 
-(replace IP_ADDRESS with the IP address of your Prometheus server)
+*replace IP_ADDRESS with the IP address of your Prometheus server*
 
 Enter a valid mina metrics such as `Coda_Transition_frontier_max_blocklength_observed` and press execute.
 
