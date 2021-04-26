@@ -1,14 +1,5 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_PROMETHEUS_MINA",
-      "label": "Prometheus Mina",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
+  "__inputs": [],
   "__requires": [
     {
       "type": "panel",
@@ -65,7 +56,7 @@
   "gnetId": 13978,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1619348326104,
+  "iteration": 1619408468971,
   "links": [],
   "panels": [
     {
@@ -81,7 +72,7 @@
       "type": "row"
     },
     {
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -131,7 +122,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "Coda_Runtime_process_uptime_ms_total",
+          "expr": "Coda_Runtime_process_uptime_ms_total{instance=\"$instance\", job=\"mina\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -142,7 +133,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -191,8 +182,8 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "Coda_Network_peers",
-          "instant": true,
+          "expr": "Coda_Network_peers{job=\"mina\", instance=\"$instance\"}",
+          "instant": false,
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -203,7 +194,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -248,7 +239,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "Coda_Transition_frontier_max_blocklength_observed",
+          "expr": "Coda_Transition_frontier_max_blocklength_observed{job=\"mina\", instance=\"$instance\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -258,7 +249,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -304,14 +295,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "Coda_Block_producer_blocks_produced",
+          "expr": "Coda_Block_producer_blocks_produced{job=\"mina\", instance=\"$instance\"}",
           "interval": "",
           "legendFormat": "Blocks Produced",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "Coda_Block_producer_slots_won",
+          "expr": "Coda_Block_producer_slots_won{job=\"mina\", instance=\"$instance\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "Slots Won",
@@ -322,7 +313,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -368,14 +359,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "Coda_Consensus_stake_delegators",
+          "expr": "Coda_Consensus_stake_delegators{job=\"mina\", instance=\"$instance\"}",
           "interval": "",
           "legendFormat": "Delegators",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "Coda_Consensus_staking_keypairs",
+          "expr": "Coda_Consensus_staking_keypairs{job=\"mina\", instance=\"$instance\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "Staking Keypairs",
@@ -383,7 +374,7 @@
         },
         {
           "exemplar": true,
-          "expr": "Coda_Consensus_vrf_evaluations",
+          "expr": "Coda_Consensus_vrf_evaluations{job=\"mina\", instance=\"$instance\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "VRF Evaluations",
@@ -394,7 +385,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -439,7 +430,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "Coda_Transition_frontier_max_unvalidated_blocklength_observed",
+          "expr": "Coda_Transition_frontier_max_unvalidated_blocklength_observed{job=\"mina\", instance=\"$instance\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -453,7 +444,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {},
         "overrides": []
@@ -495,7 +486,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "Coda_Block_latency_inclusion_time",
+          "expr": "Coda_Block_latency_inclusion_time{job=\"mina\", instance=\"$instance\"}",
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "Seconds",
@@ -550,7 +541,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {},
         "overrides": []
@@ -592,9 +583,9 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "Coda_Block_latency_gossip_time",
+          "expr": "Coda_Block_latency_gossip_time{job=\"mina\", instance=\"$instance\"}",
           "interval": "",
-          "intervalFactor": 2,
+          "intervalFactor": 3,
           "legendFormat": "Seconds",
           "refId": "A"
         }
@@ -647,7 +638,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {},
         "overrides": []
@@ -689,7 +680,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "Coda_Block_latency_gossip_slots",
+          "expr": "Coda_Block_latency_gossip_slots{job=\"mina\", instance=\"$instance\"}",
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "Slots",
@@ -740,7 +731,7 @@
       }
     },
     {
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -787,7 +778,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "Coda_Snark_work_snark_fee_bucket",
+          "expr": "Coda_Snark_work_snark_fee_bucket{job=\"mina\", instance=\"$instance\"}",
           "format": "heatmap",
           "interval": "",
           "legendFormat": "{{le}}",
@@ -798,7 +789,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -843,7 +834,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "Coda_Scan_state_snark_fees_per_block",
+          "expr": "Coda_Scan_state_snark_fees_per_block{job=\"mina\", instance=\"$instance\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -853,7 +844,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -898,7 +889,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "Coda_Scan_state_transaction_fees_per_block / 1000000000",
+          "expr": "Coda_Scan_state_transaction_fees_per_block{job=\"mina\", instance=\"$instance\"} / 1000000000",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Mina",
@@ -1305,10 +1296,12 @@
       "mappingType": 1,
       "mappingTypes": [
         {
+          "$$hashKey": "object:92",
           "name": "value to text",
           "value": 1
         },
         {
+          "$$hashKey": "object:93",
           "name": "range to text",
           "value": 2
         }
@@ -1351,6 +1344,7 @@
       "valueFontSize": "80%",
       "valueMaps": [
         {
+          "$$hashKey": "object:95",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -1893,5 +1887,5 @@
   "timezone": "browser",
   "title": "Mina Node Dashboard",
   "uid": "mina_node_dashboard",
-  "version": 35
+  "version": 49
 }
