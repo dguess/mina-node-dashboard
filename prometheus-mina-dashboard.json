@@ -65,7 +65,7 @@
   "gnetId": 13978,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1619410820565,
+  "iteration": 1619411583850,
   "links": [],
   "panels": [
     {
@@ -550,7 +550,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {},
         "overrides": []
@@ -647,7 +647,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {},
         "overrides": []
@@ -740,7 +740,7 @@
       }
     },
     {
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -798,7 +798,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -853,7 +853,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS_MINA}",
+      "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1817,8 +1817,8 @@
       {
         "current": {
           "selected": true,
-          "text": "Prometheus Mina",
-          "value": "Prometheus Mina"
+          "text": "default",
+          "value": "default"
         },
         "description": null,
         "error": null,
@@ -1896,5 +1896,5 @@
   "timezone": "browser",
   "title": "Mina Node Dashboard",
   "uid": "mina_node_dashboard",
-  "version": 51
+  "version": 1
 }
