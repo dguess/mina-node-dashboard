@@ -49,7 +49,9 @@ If everything worked correctly you should now be able to see Prometheus running 
 
 ## Step 3: Enabling metrics on the Mina server
 
-Now you need to set up the Mina server so that Prometheus can access the metrics.
+Now you need to set up the Mina server so that Prometheus can access the metrics. 
+
+Important note: If you want to capture metrics from multiple Mina servers then you will need to repeat this step on each Mina node.
 
 ### Enable Mina metrics port
 
@@ -84,6 +86,8 @@ Create the following firewall rule on your Mina server and allow the inbound tra
 ## Step 4: Install node_exporter on the Mina node
 
 As well as the Mina specific metrics we also want to capture the server metrics so we can see how the server is performing (eg. RAM usage, CPU, etc.). To enable this you need to install the node_exporter.
+
+Important note: If you want to capture metrics from multiple Mina servers then you will need to repeat this step on each Mina node.
 
 ### Create Prometheus system user / group
 We’ll create a dedicated Prometheus system user and group. The  -r or –system option is used for this purpose.
@@ -203,9 +207,26 @@ scrape_configs:
 
     static_configs:
     - targets: ['[IP_ADDRESS]:6060','[IP_ADDRESS]:9100']
+      labels:
+        instance: '[NODE_NAME]'
+
 ```
 
-*replace [IP Address] with the public IP address of your Mina server*
+If you want to capture metrics from multiple Mina nodes then you can add additional targets like below:
+```yml
+    static_configs:
+    - targets: ['[IP_ADDRESS]:6060','[IP_ADDRESS]:9100']
+      labels:
+        instance: '[NODE_NAME_1]'
+    - targets: ['[IP_ADDRESS]:6060','[IP_ADDRESS]:9100']
+      labels:
+        instance: '[NODE_NAME_2]'
+    - targets: ['[IP_ADDRESS]:6060','[IP_ADDRESS]:9100']
+      labels:
+        instance: '[NODE_NAME_3]'                
+```
+
+*replace [IP_ADDRESS] with the public IP address of your Mina server & replace [NODE_NAME] with a name to describe the server
 
 Now restart Prometheus:
 ```shell
