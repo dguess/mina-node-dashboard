@@ -281,9 +281,7 @@ To import the Mina Node Dashboard click on the 'Create' menu on the left and sel
 
 ![Grafana Import Example](./screenshot-grafana-import.png)
 
-In the 'Import via panel json' section paste the following JSON:
-
-[Mina Node Dashboard JSON](./prometheus-mina-dashboard.json)
+In the 'Import via panel json' section paste the following JSON [Mina Node Dashboard JSON](./prometheus-mina-dashboard.json). Also available to download here - https://grafana.com/grafana/dashboards/14299
 
 You should now see your new Mina Node Dashboard!
 
