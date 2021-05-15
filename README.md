@@ -128,7 +128,7 @@ node_exporter --version
 
 Create node_exporter service.
 
-```
+```shell
 sudo tee /etc/systemd/system/node_exporter.service <<EOF
 [Unit]
 Description=Node Exporter
@@ -147,19 +147,24 @@ Reload systemd and start the service.
 sudo systemctl daemon-reload
 sudo systemctl start node_exporter
 sudo systemctl enable node_exporter
+```
+
 Confirm status:
 
-$  systemctl status node_exporter.service 
-● node_exporter.service - Node Exporter
-   Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
-   Active: active (running) since Wed 2019-08-21 23:41:11 CEST; 8s ago
- Main PID: 22879 (node_exporter)
-    Tasks: 6 (limit: 4585)
-   Memory: 6.6M
-   CGroup: /system.slice/node_exporter.service
-           └─22879 /usr/local/bin/node_exporter
-.................................................
+```shell
+systemctl status node_exporter.service 
 ```
+
+>● node_exporter.service - Node Exporter
+>   Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
+>   Active: active (running) since Wed 2019-08-21 23:41:11 CEST; 8s ago
+> Main PID: 22879 (node_exporter)
+>    Tasks: 6 (limit: 4585)
+>   Memory: 6.6M
+>   CGroup: /system.slice/node_exporter.service
+>           └─22879 /usr/local/bin/node_exporter
+>.................................................
+>
 
 ## Step 5: Configure Prometheus to get Mina metrics
 
