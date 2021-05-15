@@ -121,10 +121,10 @@ Confirm installation.
 ```shell
 node_exporter --version
 ```
-node_exporter, version 0.18.1 (branch: HEAD, revision: 3db77732e925c08f675d7404a8c46466b2ece83e)
-  build user:       root@b50852a1acba
-  build date:       20190604-16:41:18
-  go version:       go1.12.5
+> *node_exporter, version 0.18.1 (branch: HEAD, revision: 3db77732e925c08f675d7404a8c46466b2ece83e)
+>  build user:       root@b50852a1acba
+>  build date:       20190604-16:41:18
+>  go version:       go1.12.5*
 
 Create node_exporter service.
 
