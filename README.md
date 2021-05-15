@@ -122,8 +122,11 @@ Confirm installation.
 node_exporter --version
 ```
 > *node_exporter, version 0.18.1 (branch: HEAD, revision: 3db77732e925c08f675d7404a8c46466b2ece83e)
+>
 >  build user:       root@b50852a1acba
+>
 >  build date:       20190604-16:41:18
+>
 >  go version:       go1.12.5*
 
 Create node_exporter service.
@@ -155,16 +158,21 @@ Confirm status:
 systemctl status node_exporter.service 
 ```
 
->● node_exporter.service - Node Exporter
->   Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
->   Active: active (running) since Wed 2019-08-21 23:41:11 CEST; 8s ago
-> Main PID: 22879 (node_exporter)
->    Tasks: 6 (limit: 4585)
->   Memory: 6.6M
->   CGroup: /system.slice/node_exporter.service
->           └─22879 /usr/local/bin/node_exporter
->.................................................
+> ● node_exporter.service - Node Exporter
 >
+> Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
+>
+>   Active: active (running) since Wed 2019-08-21 23:41:11 CEST; 8s ago
+>
+> Main PID: 22879 (node_exporter)
+>
+>    Tasks: 6 (limit: 4585)
+>
+>   Memory: 6.6M
+>
+>   CGroup: /system.slice/node_exporter.service
+>
+>           └─22879 /usr/local/bin/node_exporter
 
 ## Step 5: Configure Prometheus to get Mina metrics
 
