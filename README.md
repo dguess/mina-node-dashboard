@@ -83,6 +83,12 @@ Create the following firewall rule on your Mina server and allow the inbound tra
 
 *replace [IP Address] with the public IP address of your prometheus server*
 
+You will need to restart the Mina daemon for this change to take effect:
+
+```shell
+systemctl --user restart mina
+```
+
 ## Step 4: Install node_exporter on the Mina node
 
 As well as the Mina specific metrics we also want to capture the server metrics so we can see how the server is performing (eg. RAM usage, CPU, etc.). To enable this you need to install the node_exporter.
@@ -110,7 +116,7 @@ curl -s https://api.github.com/repos/prometheus/node_exporter/releases/latest \
 
 Extract downloaded file and move the binary file to /usr/local/bin.
 
-```
+```shell
 tar -xvf node_exporter*.tar.gz
 cd  node_exporter*/
 sudo cp node_exporter /usr/local/bin
@@ -118,8 +124,9 @@ sudo cp node_exporter /usr/local/bin
 
 Confirm installation.
 
-```
-$ node_exporter --version
+```shell
+node_exporter --version
+
 node_exporter, version 0.18.1 (branch: HEAD, revision: 3db77732e925c08f675d7404a8c46466b2ece83e)
   build user:       root@b50852a1acba
   build date:       20190604-16:41:18
@@ -128,7 +135,7 @@ node_exporter, version 0.18.1 (branch: HEAD, revision: 3db77732e925c08f675d7404a
 
 Create node_exporter service.
 
-```
+```shell
 sudo tee /etc/systemd/system/node_exporter.service <<EOF
 [Unit]
 Description=Node Exporter
@@ -142,14 +149,20 @@ ExecStart=/usr/local/bin/node_exporter
 [Install]
 WantedBy=default.target
 EOF
+```
+
 Reload systemd and start the service.
 
+```
 sudo systemctl daemon-reload
 sudo systemctl start node_exporter
 sudo systemctl enable node_exporter
+```
+
 Confirm status:
 
-$  systemctl status node_exporter.service 
+```
+systemctl status node_exporter.service 
 ● node_exporter.service - Node Exporter
    Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
    Active: active (running) since Wed 2019-08-21 23:41:11 CEST; 8s ago

@@ -62,13 +62,14 @@
   },
   "description": "A quickstart to set up a Mina Node Dashboard",
   "editable": true,
-  "gnetId": 13978,
+  "gnetId": 14299,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1619411583850,
+  "iteration": 1624409723682,
   "links": [],
   "panels": [
     {
+      "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
@@ -77,6 +78,7 @@
         "y": 0
       },
       "id": 13,
+      "panels": [],
       "title": "Mina Stats",
       "type": "row"
     },
@@ -106,7 +108,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 6,
         "x": 0,
         "y": 1
@@ -157,7 +159,7 @@
                 "value": null
               },
               {
-                "color": "green",
+                "color": "light-green",
                 "value": 50
               }
             ]
@@ -166,7 +168,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 6,
         "x": 6,
         "y": 1
@@ -214,7 +216,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-blue",
+                "color": "blue",
                 "value": null
               }
             ]
@@ -223,7 +225,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 8,
         "w": 4,
         "x": 12,
         "y": 1
@@ -233,7 +235,7 @@
         "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "auto",
-        "orientation": "auto",
+        "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -250,11 +252,79 @@
           "exemplar": true,
           "expr": "Coda_Transition_frontier_max_blocklength_observed{job=\"mina\", instance=\"$instance\"}",
           "interval": "",
+          "legendFormat": "Max Observed",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "Coda_Transition_frontier_max_unvalidated_blocklength_observed{job=\"mina\", instance=\"$instance\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Max Unvalidated",
+          "refId": "B"
+        }
+      ],
+      "title": "Block Height",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 600
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 16,
+        "y": 1
+      },
+      "id": 36,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time() - (Coda_Transition_frontier_best_tip_slot_time_sec{instance=\"$instance\", job=\"mina\"} + 1609459200)",
+          "interval": "",
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "title": "Max Observed Block Height",
+      "title": "Last Best Tip (Slot Time)",
       "type": "stat"
     },
     {
@@ -270,7 +340,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
+                "color": "super-light-blue",
                 "value": null
               }
             ]
@@ -279,10 +349,74 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 4,
         "w": 4,
-        "x": 16,
+        "x": 20,
         "y": 1
+      },
+      "id": 27,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "Coda_Consensus_stake_delegators{job=\"mina\", instance=\"$instance\"}",
+          "interval": "",
+          "legendFormat": "Delegators",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "Coda_Consensus_staking_keypairs{job=\"mina\", instance=\"$instance\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Staking Keypairs",
+          "refId": "B"
+        }
+      ],
+      "title": "Consensus",
+      "type": "stat"
+    },
+    {
+      "datasource": "$datasource",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 5
       },
       "id": 26,
       "options": {
@@ -322,133 +456,6 @@
       "type": "stat"
     },
     {
-      "datasource": "$datasource",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "blue",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 20,
-        "y": 1
-      },
-      "id": 27,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.5.4",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "Coda_Consensus_stake_delegators{job=\"mina\", instance=\"$instance\"}",
-          "interval": "",
-          "legendFormat": "Delegators",
-          "refId": "A"
-        },
-        {
-          "exemplar": true,
-          "expr": "Coda_Consensus_staking_keypairs{job=\"mina\", instance=\"$instance\"}",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "Staking Keypairs",
-          "refId": "B"
-        },
-        {
-          "exemplar": true,
-          "expr": "Coda_Consensus_vrf_evaluations{job=\"mina\", instance=\"$instance\"}",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "VRF Evaluations",
-          "refId": "C"
-        }
-      ],
-      "title": "Consensus",
-      "type": "stat"
-    },
-    {
-      "datasource": "$datasource",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "dark-blue",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 12,
-        "y": 4
-      },
-      "id": 20,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.5.4",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "Coda_Transition_frontier_max_unvalidated_blocklength_observed{job=\"mina\", instance=\"$instance\"}",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Max Observed Unvalidated Block Height",
-      "type": "stat"
-    },
-    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -464,7 +471,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 7
+        "y": 9
       },
       "hiddenSeries": false,
       "id": 22,
@@ -561,7 +568,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 7
+        "y": 9
       },
       "hiddenSeries": false,
       "id": 23,
@@ -658,7 +665,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 7
+        "y": 9
       },
       "hiddenSeries": false,
       "id": 24,
@@ -767,7 +774,7 @@
         "h": 8,
         "w": 16,
         "x": 0,
-        "y": 15
+        "y": 17
       },
       "id": 29,
       "options": {
@@ -818,10 +825,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 5,
         "w": 4,
         "x": 16,
-        "y": 15
+        "y": 17
       },
       "id": 31,
       "options": {
@@ -873,10 +880,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 5,
         "w": 4,
         "x": 20,
-        "y": 15
+        "y": 17
       },
       "id": 33,
       "options": {
@@ -909,13 +916,290 @@
       "type": "stat"
     },
     {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 600
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 16,
+        "y": 22
+      },
+      "id": 35,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time() - (Coda_Snark_work_useful_snark_work_received_time_sec{instance=\"$instance\", job=\"mina\"} + 1609459200)",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Last Snark Work Received",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-purple",
+                "value": null
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 600
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 20,
+        "y": 22
+      },
+      "id": 40,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time() - (Coda_Transaction_pool_useful_transactions_received_time_sec{instance=\"$instance\", job=\"mina\"} + 1609459200)",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Last Transaction Received",
+      "type": "stat"
+    },
+    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 23
+        "y": 25
+      },
+      "id": 39,
+      "panels": [],
+      "title": "Alerts",
+      "type": "row"
+    },
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                1080
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "5m",
+        "frequency": "1m",
+        "handler": 1,
+        "message": "Node is down.",
+        "name": "Last Best Tip (Slot Time) alert",
+        "noDataState": "no_data",
+        "notifications": []
+      },
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "hiddenSeries": false,
+      "id": 37,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time() - (Coda_Transition_frontier_best_tip_slot_time_sec{job=\"mina\"} + 1609459200)",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 1080,
+          "visible": true
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Last Best Tip (Slot Time)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:287",
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:288",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 33
       },
       "id": 11,
       "panels": [],
@@ -938,7 +1222,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 34
       },
       "hiddenSeries": false,
       "id": 2,
@@ -1041,7 +1325,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 24
+        "y": 34
       },
       "hiddenSeries": false,
       "id": 3,
@@ -1165,7 +1449,7 @@
         "h": 7,
         "w": 18,
         "x": 0,
-        "y": 31
+        "y": 41
       },
       "hiddenSeries": false,
       "id": 4,
@@ -1250,6 +1534,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:202",
           "format": "bytes",
           "label": null,
           "logBase": 1,
@@ -1258,6 +1543,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:203",
           "format": "bytes",
           "label": null,
           "logBase": 1,
@@ -1297,7 +1583,7 @@
         "h": 7,
         "w": 6,
         "x": 18,
-        "y": 31
+        "y": 41
       },
       "id": 5,
       "interval": null,
@@ -1377,7 +1663,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 38
+        "y": 48
       },
       "hiddenSeries": false,
       "id": 6,
@@ -1505,7 +1791,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 38
+        "y": 48
       },
       "hiddenSeries": false,
       "id": 7,
@@ -1620,7 +1906,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 45
+        "y": 55
       },
       "hiddenSeries": false,
       "id": 8,
@@ -1720,7 +2006,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 45
+        "y": 55
       },
       "hiddenSeries": false,
       "id": 9,
@@ -1816,7 +2102,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "default",
           "value": "default"
         },
@@ -1896,5 +2182,5 @@
   "timezone": "browser",
   "title": "Mina Node Dashboard",
   "uid": "mina_node_dashboard",
-  "version": 1
+  "version": 14
 }
