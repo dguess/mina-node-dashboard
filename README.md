@@ -41,9 +41,9 @@ Connect to your new AWS instance and follow the following guide to install Prome
 
 https://computingforgeeks.com/install-prometheus-server-on-debian-ubuntu-linux/)
 
-If everything worked correctly you should now be able to see Prometheus running by going to http://[IP Address]:9090
+If everything worked correctly you should now be able to see Prometheus running by going to http://IP_ADDRESS:9090
 
-(replace [IP Address] with the public IP address of your prometheus server)
+(replace IP_ADDRESS with the public IP address of your prometheus server)
 
 ![Prometheus Running Example](./screenshot-prometheus-example.png)
 
@@ -78,10 +78,10 @@ Create the following firewall rule on your Mina server and allow the inbound tra
  - **Prometheus**
     - Type: Custom TCP Rule
     - Port Range: 6060, 9100
-    - Source: [IP Address]
+    - Source: IP_ADDRESS
     - Description: Prometheus
 
-*replace [IP Address] with the public IP address of your prometheus server*
+*replace IP_ADDRESS with the public IP address of your prometheus server*
 
 You will need to restart the Mina daemon for this change to take effect:
 
@@ -126,12 +126,15 @@ Confirm installation.
 
 ```shell
 node_exporter --version
-
-node_exporter, version 0.18.1 (branch: HEAD, revision: 3db77732e925c08f675d7404a8c46466b2ece83e)
-  build user:       root@b50852a1acba
-  build date:       20190604-16:41:18
-  go version:       go1.12.5
 ```
+> *node_exporter, version 0.18.1 (branch: HEAD, revision: 3db77732e925c08f675d7404a8c46466b2ece83e)
+>
+>  build user:       root@b50852a1acba
+>
+>  build date:       20190604-16:41:18
+>
+>  go version:       go1.12.5*
+
 
 Create node_exporter service.
 
@@ -161,18 +164,25 @@ sudo systemctl enable node_exporter
 
 Confirm status:
 
-```
+```shell
 systemctl status node_exporter.service 
-● node_exporter.service - Node Exporter
-   Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
-   Active: active (running) since Wed 2019-08-21 23:41:11 CEST; 8s ago
- Main PID: 22879 (node_exporter)
-    Tasks: 6 (limit: 4585)
-   Memory: 6.6M
-   CGroup: /system.slice/node_exporter.service
-           └─22879 /usr/local/bin/node_exporter
-.................................................
 ```
+
+> ● node_exporter.service - Node Exporter
+>
+> Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
+>
+>   Active: active (running) since Wed 2019-08-21 23:41:11 CEST; 8s ago
+>
+> Main PID: 22879 (node_exporter)
+>
+>    Tasks: 6 (limit: 4585)
+>
+>   Memory: 6.6M
+>
+>   CGroup: /system.slice/node_exporter.service
+>
+>           └─22879 /usr/local/bin/node_exporter
 
 ## Step 5: Configure Prometheus to get Mina metrics
 
@@ -219,27 +229,27 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-    - targets: ['[IP_ADDRESS]:6060','[IP_ADDRESS]:9100']
+    - targets: ['IP_ADDRESS:6060','IP_ADDRESS:9100']
       labels:
-        instance: '[NODE_NAME]'
+        instance: 'NODE_NAME'
 
 ```
 
 If you want to capture metrics from multiple Mina nodes then you can add additional targets like below:
 ```yml
     static_configs:
-    - targets: ['[IP_ADDRESS]:6060','[IP_ADDRESS]:9100']
+    - targets: ['IP_ADDRESS:6060','IP_ADDRESS:9100']
       labels:
-        instance: '[NODE_NAME_1]'
-    - targets: ['[IP_ADDRESS]:6060','[IP_ADDRESS]:9100']
+        instance: 'NODE_NAME_1'
+    - targets: ['IP_ADDRESS:6060','IP_ADDRESS:9100']
       labels:
-        instance: '[NODE_NAME_2]'
-    - targets: ['[IP_ADDRESS]:6060','[IP_ADDRESS]:9100']
+        instance: 'NODE_NAME_2'
+    - targets: ['IP_ADDRESS:6060','IP_ADDRESS:9100']
       labels:
-        instance: '[NODE_NAME_3]'                
+        instance: 'NODE_NAME_3'                
 ```
 
-*replace [IP_ADDRESS] with the public IP address of your Mina server & replace [NODE_NAME] with a name to describe the server
+*replace IP_ADDRESS with the public IP address of your Mina server & replace NODE_NAME with a name to describe the server
 
 Now restart Prometheus:
 ```shell
@@ -249,7 +259,7 @@ sudo systemctl restart prometheus
 If Prometheus is now working as expected we should be able to view the metrics collected from our Mina server.
 
 Open the Prometheus web client again:
-http://[IP_ADDRESS]:9090/
+http://IP_ADDRESS:9090/
 
 *replace IP_ADDRESS with the IP address of your Prometheus server*
 
@@ -268,9 +278,9 @@ Use the following guide to install Grafana on the same server as Prometheus:
 
 https://computingforgeeks.com/how-to-install-grafana-on-ubuntu-debian/
 
-If everything worked correctly you should now be able to see Grafana running by going to http://[IP Address]:3000
+If everything worked correctly you should now be able to see Grafana running by going to http://IP_ADDRESS:3000
 
-(replace [IP Address] with the public IP address of your prometheus server)
+(replace IP_ADDRESS with the public IP address of your prometheus server)
 
 ![Grafana Running Example](./screenshot-grafana-example1.png)
 
