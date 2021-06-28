@@ -2,14 +2,14 @@
 
 This is a guide on how to set up a Mina Node Dashboard using Prometheus and Grafana using Ubuntu 18.04 running on a t3.micro AWS EC2 instance.
 
-[Part 1: Setting up a Dashboard with Prometheus & Grafana](#part-1-setting-up-a-dashboard-with-prometheus-and-grafana)
-[Part 2: Setting up Grafana Alerts in Discord](#part-2-setting-up-a-dashboard-with-prometheus-and-grafana)
+* [Part 1: Setting up a Dashboard with Prometheus & Grafana](#part-1-setting-up-a-dashboard-with-prometheus-and-grafana)
+* [Part 2: Setting up Grafana Alerts in Discord](#part-2-setting-up-grafana-alerts-in-discord)
 
 ![Mina Node Dashboard Example](./screenshot-dashboard1.png)
 
 ![Mina Node Dashboard Example2](./screenshot-dashboard2.png)
 
-#Part 1: Setting up a Dashboard with Prometheus and Grafana
+# Part 1: Setting up a Dashboard with Prometheus and Grafana
 
 ## Step 1: Set up the new server
 
@@ -317,6 +317,6 @@ You should now see your new Mina Node Dashboard!
 
 There's also an excellent community-built 'Mina Performance Dashboard' available to import here - https://grafana.com/grafana/dashboards/12840
 
-#Part 2: Setting up Grafana Alerts in Discord
+# Part 2: Setting up Grafana Alerts in Discord
 
 [TODO]
