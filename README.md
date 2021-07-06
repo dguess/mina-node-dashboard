@@ -323,7 +323,7 @@ If you would like to receive alerts in Discord when your Mina Node is down then 
 
 ## Step 1: Create a new discord server / channel
 
-Select the '+' button in the bottom left of Discord to create a new Discord server, then select 'Create my own' and then 'For me and my friends'
+Select the '+' button in the bottom left of Discord to create a new Discord server, then select 'Create my own' and then 'For me and my friends'.
 
 ![Discord Create Server / Channel Example](./screenshot-alerts-1.png)
 
@@ -343,7 +343,7 @@ Give the webhook a name and select 'Copy Webhook URL' and save.
 
 ## Step 3: Set up the Discord Notification Channel in Grafana
 
-Open up your Grafana dashboard (http://IP_ADDRESS:3000/) and select 'Alerts' and then 'Notification Channels'
+Open up your Grafana dashboard (http://IP_ADDRESS:3000/) and select 'Alerts' and then 'Notification Channels'.
 
 ![Grafana Alerts Example](./screenshot-alerts-5.png)
 
@@ -353,17 +353,17 @@ Select 'Add Channel' to add the new notification Channel, give it a name and the
 
 ## Step 4: Setting up the Alert
 
-Now open the dashboard and go to the panel called 'Last Best Tip (Slot Time', select the header and then the 'Edit' option
+Now open the dashboard and go to the panel called 'Last Best Tip (Slot Time)', select the header and then the 'Edit' option.
 
 ![Grafana Alerts Example](./screenshot-alerts-7.png)
 
-Select the 'Alerts tab and then 'Create Alert'
+Select the 'Alerts tab and then 'Create Alert'.
 
 ![Grafana Alerts Example](./screenshot-alerts-8.png)
 
 In the 'Conditions' section change the value to 'Is Above 900' (this means if the last best tip slot time is more than 15 minutes ago).
 
-You can play around with this value but if you set it to a smaller value you may get a lot of false alerts. You can play around with setting up additional alerts but this should be a good start.
+You can play around with this value but if you set it to a smaller value you may get a lot of false alerts. You can also set up additional alerts but this should be a good start.
 
 ![Grafana Alerts Example](./screenshot-alerts-9.png)
 
