@@ -319,4 +319,51 @@ There's also an excellent community-built 'Mina Performance Dashboard' available
 
 # Part 2: Setting up Grafana Alerts in Discord
 
-[TODO]
+## Step 1: Create a new discord server / channel
+
+Select the '+' button in the bottom left of Discord to create a new Discord server, then select 'Create my own' and then 'For me and my friends'
+
+![Discord Create Server / Channel Example](./screenshot-alerts-1.png)
+
+Give the server a name and click 'Create'.
+
+![Discord Create Server / Channel Example](./screenshot-alerts-2.png)
+
+## Step 2: Set up the webhook integration
+
+Select the 'edit channel' button next to the channel name and then select the 'Integrations' menu option on the left and select 'Create Webhook'. 
+
+![Discord Webhook Example](./screenshot-alerts-3.png)
+
+Give the webhook a name and select 'Copy Webhook URL' and save.
+
+![Discord Webhook Example](./screenshot-alerts-4.png)
+
+## Step 3: Set up the Discord Notification Channel in Grafana
+
+Open up your Grafana dashboard (http://IP_ADDRESS:3000/) and select 'Alerts' and then 'Notification Channels'
+
+![Grafana Alerts Example](./screenshot-alerts-5.png)
+
+Select 'Add Channel' to add the new notification Channel, give it a name and then select 'Discord' as the type, finally paste in the Webhook URL you copied earlier. Select 'Test' and you should receive a notification in Discord if everything is working as it should be.
+
+![Grafana Alerts Example](./screenshot-alerts-6.png)
+
+## Step 4: Setting up the Alert
+
+Now open the dashboard and go to the panel called 'Last Best Tip (Slot Time', select the header and then the 'Edit' option
+
+![Grafana Alerts Example](./screenshot-alerts-7.png)
+
+Select the 'Alerts tab and then 'Create Alert'
+
+![Grafana Alerts Example](./screenshot-alerts-8.png)
+
+In the 'Conditions' section change the value to 'Is Above 900' (this means if the last best tip slot time is more than 15 minutes ago).
+
+You can play around with this value but if you set it to a smaller value you may get a lot of false alerts. You can play around with setting up additional alerts but this should be a good start.
+
+In the Notifications section in the 'Send To' field select the Dircord Notification Channel we just set up and then provide a message, eg. Node is Down.
+
+Save the dashboard and your alerts are all set up and ready to go!
+
