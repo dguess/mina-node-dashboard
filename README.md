@@ -1,6 +1,6 @@
 # Mina Node Dashboard & Alerts (Using Prometheus & Grafana)
 
-This is a guide on how to set up a Mina Node Dashboard using Prometheus and Grafana using Ubuntu 18.04 running on a t3.micro AWS EC2 instance.
+This is a guide on how to set up a Mina Node Dashboard to monitor your Mina Nodes using Prometheus and Grafana using Ubuntu 18.04 running on a t3.micro AWS EC2 instance.
 
 * [Part 1: Setting up a Dashboard with Prometheus & Grafana](#part-1-setting-up-a-dashboard-with-prometheus-and-grafana)
 * [Part 2: Setting up Grafana Alerts in Discord](#part-2-setting-up-grafana-alerts-in-discord)
@@ -319,6 +319,8 @@ There's also an excellent community-built 'Mina Performance Dashboard' available
 
 # Part 2: Setting up Grafana Alerts in Discord
 
+If you would like to receive alerts in Discord when your Mina Node is down then continue on!
+
 ## Step 1: Create a new discord server / channel
 
 Select the '+' button in the bottom left of Discord to create a new Discord server, then select 'Create my own' and then 'For me and my friends'
@@ -363,7 +365,9 @@ In the 'Conditions' section change the value to 'Is Above 900' (this means if th
 
 You can play around with this value but if you set it to a smaller value you may get a lot of false alerts. You can play around with setting up additional alerts but this should be a good start.
 
-In the Notifications section in the 'Send To' field select the Dircord Notification Channel we just set up and then provide a message, eg. Node is Down.
+![Grafana Alerts Example](./screenshot-alerts-9.png)
+
+In the Notifications section in the 'Send To' field select the Discord Notification Channel we just set up and then provide a message, eg. Node is Down.
 
 Save the dashboard and your alerts are all set up and ready to go!
 
