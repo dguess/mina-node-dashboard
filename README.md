@@ -315,8 +315,6 @@ You should now see your new Mina Node Dashboard!
 
 ![Mina Node Dashboard Example](./screenshot-dashboard1.png)
 
-There's also an excellent community-built 'Mina Performance Dashboard' available to import here - https://grafana.com/grafana/dashboards/12840
-
 # Part 2: Setting up Grafana Alerts in Discord
 
 If you would like to receive alerts in Discord when your Mina Node is down then continue on!
